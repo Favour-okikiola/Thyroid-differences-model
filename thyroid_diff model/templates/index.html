@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thyroid Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(254, 155, 5);
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color:rgb(255, 162, 2);
+        }
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Thyroid Cancer Risk Prediction</h2>
+        <form method="POST" action="/predict">
+            <label>Age:</label>
+            <input type="number" name="Age" required>
+
+            <label>Gender:</label>
+            <select name="Gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label>Smoking:</label>
+            <select name="Smoking" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Hx_Radiothreapy:</label>
+            <select name="Hx_Radiothreapy" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Thyroid_Function:</label>
+            <select name="Thyroid_Function" required>
+                <option value="Euthyroid">Euthyroid</option>
+                <option value="Clinical Hyperthyroidism">Clinical Hyperthyroidism</option>
+                <option value="Subclinical Hypothyroidism">Subclinical Hypothyroidism</option>
+                <option value="Clinical Hypothyroidism">Clinical Hypothyroidism</option>
+                <option value="Subclinical Hyperthyroidism">Subclinical Hyperthyroidism</option>
+            </select>
+
+            <label>Physical_Examination:</label>
+            <select name="Physical_Examination" required>
+                <option value="Normal">Normal</option>
+                <option value="Multinodular goiter">Multinodular goiter</option>
+                <option value="Single nodular goiter-right">Single nodular goiter-right</option>
+                <option value="Single nodular goiter-left">Single nodular goiter-left</option>
+                <option value="Diffuse goiter">Diffuse goiter</option>
+            </select>
+
+            <label>Adenopathy:</label>
+            <select name="Adenopathy" required>
+                <option value="No">No</option>
+                <option value="Right">Right</option>
+                <option value="Bilateral">Bilateral</option>
+                <option value="Left">Left</option>
+                <option value="Extensive">Extensive</option>
+                <option value="Posterior">Posterior</option>
+            </select>
+
+            <label>Pathology:</label>
+            <select name="Pathology" required>
+                <option value="Papillary">Papillary</option>
+                <option value="Micropapillary">Micropapillary</option>
+                <option value="Follicular">Follicular</option>
+                <option value="Hurthel cell">Hurthel cell</option>
+            </select>
+
+
+            <label>Focality:</label>
+            <select name="Focality" required>
+                <option value="Uni-Focal">Uni-Focal</option>
+                <option value="Multi-Focal">Multi-Focal</option>
+            </select>
+
+            <label>Risk:</label>
+            <select name="Risk" required>
+                <option value="Low">Low</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="High">High</option>
+            </select>
+
+            <label>Stage:</label>
+            <select name="Stage" required>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="IVB">IVB</option>
+                <option value="III">III</option>
+                <option value="IVA">IVA</option>
+            </select>
+
+            <label>Response:</label>
+            <select name="Response" required>
+                <option value="Excellent">Excellent</option>
+                <option value="Structural Incomplete">Structural Incomplete</option>
+                <option value="Indeterminate">Indeterminate</option>
+                <option value="Biochemical Incomplete">Biochemical Incomplete</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            <strong>Prediction:</strong> {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
